@@ -18,7 +18,7 @@ The project uses MVC-style folder structure:
 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/ankitredxm/File_management_System/tree/main
 cd practice2
 ```
 
