@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-zinc-900">
+<div class="max-w-3xl mx-auto py-10 px-6">
+
+    <!-- Heading -->
+    <h1 class="text-4xl font-bold text-center text-white mb-10 tracking-tight">
+        📝 Task Manager
+    </h1>
+
+    <!-- Create Task Card -->
+    <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl shadow-2xl p-6 mb-10">
+
+        <form action="/create" method="POST" class="space-y-5">
+
+            <div>
+                <label class="block text-sm text-zinc-400 mb-2">Task Title</label>
+                <input 
+                    type="text" 
+                    name="title"
+                    placeholder="Enter task title..."
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-zinc-800 text-white placeholder-zinc-500 focus:ring-2 focus:ring-green-500 outline-none transition duration-200"
+                >
+            </div>
+
+            <div>
+                <label class="block text-sm text-zinc-400 mb-2">Task Details</label>
+                <textarea 
+                    name="details"
+                    rows="4"
+                    placeholder="Enter task details..."
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-zinc-800 text-white placeholder-zinc-500 focus:ring-2 focus:ring-green-500 outline-none transition duration-200 resize-none"
+                ></textarea>
+            </div>
+
+            <button 
+                type="submit"
+                class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:scale-[1.02] active:scale-95 transition-all duration-200 text-white font-semibold py-3 rounded-xl shadow-lg"
+            >
+                Add Task
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Task List -->
+    <div class="space-y-4">
+
+        <% if(files.length > 0){ %>
+            <% files.forEach((val)=>{ %>
+
+            <div class="flex items-center justify-between bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300 px-5 py-4 rounded-xl shadow-lg group">
+
+                <!-- Task Name -->
+                <p class="text-sm text-zinc-200 break-all font-medium">
+                    <%= val %>
+                </p>
+
+                <!-- Buttons -->
+                <div class="flex items-center gap-3">
+
+                    <!-- Read -->
+                    <form action="/read" method="POST">
+                        <input type="hidden" name="filename" value="<%= val %>">
+                        <button 
+                            type="submit"
+                            class="bg-blue-500/80 hover:bg-blue-600 transition-all duration-200 text-white text-xs px-4 py-2 rounded-lg shadow-md"
+                        >
+                            Read
+                        </button>
+                    </form>
+                    <!-- update -->
+                     <form action="/edit" method="POST">
+                        <input type="hidden" name="filename" value="<%= val %>">
+                        <button 
+                            type="submit"
+                            class="bg-purple-500/80 hover:bg-purple-600 transition-all duration-200 text-white text-xs px-4 py-2 rounded-lg shadow-md"
+                        >
+                        edit
+                        </button>
+                    </form>
+
+
+                    <!-- Delete -->
+                    <form action="/delete" method="POST">
+                        <input type="hidden" name="filename" value="<%= val %>">
+                        <button 
+                            type="submit"
+                            class="bg-red-500/80 hover:bg-red-600 transition-all duration-200 text-white text-xs px-4 py-2 rounded-lg shadow-md"
+                        >
+                            Delete
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+            <% }) %>
+        <% } else { %>
+
+        <!-- Empty State -->
+        <div class="bg-white/5 border border-dashed border-zinc-600 rounded-xl p-8 text-center text-zinc-400">
+            <p class="text-lg">No tasks yet</p>
+            <p class="text-sm mt-2">Create your first task above 🚀</p>
+        </div>
+
+        <% } %>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen bg-zinc-900">
+    <div class="max-w-3xl mx-auto py-10 px-6">
+       <h1 class="text-4xl font-bold text-center text-white mb-10 tracking-tight">
+        📝 Task Editor
+    </h1>
+
+    <!-- Create Task Card -->
+    <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl shadow-2xl p-6 mb-10">
+
+        <form action="/update" method="POST" class="space-y-5">
+<input type="hidden" name="oldf" value="<%= filename %>">
+            <div>
+                <label class="block text-sm text-zinc-400 mb-2">Task Title</label>
+                <input 
+                    type="text" 
+                    name="new_title"
+                    
+                   required
+
+                    
+                    class="w-full px-4 py-3 rounded-xl bg-zinc-800 text-white placeholder-zinc-500 focus:ring-2 focus:ring-green-500 outline-none transition duration-200"
+                >
+            </div>
+
+            <div>
+                <label class="block text-sm text-zinc-400 mb-2">Task Details</label>
+                <textarea 
+                    name="details"
+                    rows="4"
+                    placeholder="Enter task details..."
+                    required
+                    class="w-full px-4 py-3 rounded-xl bg-zinc-800 text-white placeholder-zinc-500 focus:ring-2 focus:ring-green-500 outline-none transition duration-200 resize-none"
+                ><%= data %></textarea>
+            </div>
+
+            <button 
+                type="submit"
+                class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:scale-[1.02] active:scale-95 transition-all duration-200 text-white font-semibold py-3 rounded-xl shadow-lg"
+            >
+               update
+            </button>
+
+        </form>
+
+    
+
+
+
+
+
+
+
+
+
+
+       
+
+        
+       
+
+    </div>
+</body>
+</html>
